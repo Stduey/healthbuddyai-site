@@ -14,14 +14,17 @@ Be practical, direct, and specific.
 # Site Brief
 
 ## Purpose
-Create a simple, professional, plain-language public website for people dealing with serious illness, palliative care needs, and hard medical decisions. The site should feel calm, trustworthy, respectful, and clinically careful.
+Create a simple, professional, plain-language public website for **HealthBuddy AI**.
 
-This is not a replacement for a doctor, nurse, hospice team, or emergency care. It is a general education destination that helps patients and families better understand serious illness, common symptoms, goals-of-care decisions, planning documents, and support resources.
+This website should function as the public-facing educational and credibility layer for the HealthBuddy brand. It should introduce HealthBuddy clearly, explain what the project is for, and offer genuinely useful plain-language educational content for patients, families, and caregivers dealing with serious illness, chronic illness burden, palliative care questions, and hard medical decisions.
+
+This is not a replacement for a doctor, nurse, hospice team, or emergency care. It is a general education destination that helps patients and families better understand serious illness, common symptoms, goals-of-care decisions, planning documents, supportive care concepts, and future video-based education.
 
 ## Core Positioning
-HealthBuddy AI is a plain-language education and support destination for serious illness, palliative care, and complex medical decisions.
+HealthBuddy AI is a plain-language education brand for serious illness, complex chronic illness, palliative care support, and hard medical decisions.
 
-The site should present as:
+The website should present as:
+- the public-facing home of the HealthBuddy brand
 - professional
 - transparent
 - medically conservative
@@ -36,6 +39,22 @@ The site should NOT present as:
 - an insurer
 - a substitute for medical care
 - a source of individualized medical advice
+
+## Strategic Framing Question
+One of the main things I need help deciding is how the website should frame HealthBuddy at launch.
+
+The broader HealthBuddy vision includes:
+- plain-language patient education
+- serious illness and chronic illness support
+- symptom and supportive care education
+- goals-of-care and informed-decision education
+- future video-based education as a major pillar
+
+I need your critique on whether the website should launch primarily as:
+- a **HealthBuddy brand / credibility site** with selected educational content
+- a **public education library** under the HealthBuddy brand
+- a **video-first goals-of-care education site** under the HealthBuddy brand
+- or a carefully layered combination of those approaches
 
 ## Audience
 Primary audience:
@@ -79,14 +98,15 @@ Avoid:
 - anything that feels exploitative
 
 ## Site Goals
-1. Help people understand palliative care and serious illness support.
-2. Help people understand code status and goals-of-care decisions.
-3. Explain common planning documents like POLST and advance directives.
-4. Offer basic symptom education and supportive measures.
-5. Offer plain-language condition overviews for major serious illnesses.
-6. Provide practical support links and contact information for public programs and major insurers where useful.
-7. Create a strong foundation for future personalized, de-identified education.
-8. Make video education a central feature of the experience.
+1. Establish HealthBuddy AI as a credible, trustworthy public education brand.
+2. Help people understand palliative care, serious illness support, and chronic illness burden in plain language.
+3. Help people understand code status and goals-of-care decisions.
+4. Explain common planning documents like POLST and advance directives.
+5. Offer basic symptom education and supportive measures.
+6. Offer plain-language condition overviews for major serious illnesses and common chronic disease burdens.
+7. Provide carefully chosen practical support links and contact information for public programs and major insurers where useful.
+8. Create a strong foundation for future personalized, de-identified education.
+9. Make video education a central feature of the experience.
 
 ## Launch Scope
 Initial launch should stay intentionally simple and polished.
@@ -269,7 +289,9 @@ Do not include:
 - exaggerated claims of authority
 
 ## Technical Build Preferences
-- static or very lightweight site
+- static HTML/CSS site or equally lightweight approach
+- no backend for the first version
+- no framework requirement for the first version if simple HTML/CSS is enough
 - fast load times
 - mobile-friendly
 - accessible typography and spacing
@@ -363,6 +385,8 @@ Specifically answer these questions:
 8. What legal/clinical trust issues should be handled carefully in wording, structure, or disclaimers?
 9. Which elements are most likely to create **maintenance burden** or **accuracy drift** over time?
 10. If you had to define the **best possible version** of this site in one paragraph, how would you describe it?
+11. How should the site balance **HealthBuddy brand introduction** versus **standalone educational utility** at launch?
+12. If this were a static HTML/CSS site with no backend, what would you recommend as the **cleanest first-release scope**?
 
 ## Important constraints
 - Keep the recommendations practical.
