@@ -3,10 +3,635 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HealthBuddy AI</title>
+  <meta name="description" content="HealthBuddy AI offers calm, plain-language education about serious illness, palliative care, goals of care, and comfort-focused support." />
+  <title>HealthBuddy AI — Plain-Language Support for Serious Illness</title>
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --surface: #fffdf9;
+      --surface-2: #f1eee7;
+      --ink: #1f2933;
+      --muted: #5c6b73;
+      --line: #d9d3c6;
+      --navy: #1e3a4a;
+      --teal: #2f6f6d;
+      --sage: #7d9b87;
+      --sand: #e9e1d2;
+      --accent: #b86a4b;
+      --shadow: 0 10px 30px rgba(31, 41, 51, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    a { color: var(--navy); }
+    a:hover { color: var(--teal); }
+
+    .top-alert {
+      background: #fbf0df;
+      color: #704b2d;
+      border-bottom: 1px solid #e8d2b3;
+      font-size: 0.95rem;
+    }
+
+    .wrap {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .top-alert .wrap,
+    .site-header .wrap,
+    .hero .wrap,
+    section .wrap,
+    footer .wrap {
+      padding-top: 0.9rem;
+      padding-bottom: 0.9rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 245, 241, 0.88);
+      border-bottom: 1px solid rgba(217, 211, 198, 0.9);
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 0.9rem;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      color: white;
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover,
+    nav a:focus-visible { color: var(--navy); }
+
+    .hero {
+      padding: 4.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.38rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(47, 111, 109, 0.1);
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+      color: #15232c;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.7rem);
+      max-width: 12ch;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .lead {
+      font-size: 1.18rem;
+      max-width: 62ch;
+      color: #31414a;
+    }
+
+    .button-row {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: 0.2s ease;
+    }
+
+    .button.primary {
+      background: var(--navy);
+      color: white;
+      box-shadow: var(--shadow);
+    }
+
+    .button.primary:hover { background: #17313f; }
+
+    .button.secondary {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--navy);
+    }
+
+    .button.secondary:hover { border-color: var(--teal); color: var(--teal); }
+
+    .hero-card,
+    .trust-card,
+    .content-card,
+    .video-card,
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid rgba(217, 211, 198, 0.85);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 1.5rem;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(241,238,231,0.9));
+    }
+
+    .hero-card h3 { margin-bottom: 0.7rem; }
+
+    .mini-list,
+    .content-card ul,
+    .quote-card ul {
+      margin: 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .mini-list li,
+    .content-card li,
+    .quote-card li { margin-bottom: 0.65rem; }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .trust-card {
+      padding: 1rem 1.1rem;
+    }
+
+    .trust-card strong {
+      display: block;
+      margin-bottom: 0.3rem;
+      color: var(--navy);
+    }
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .section-head {
+      max-width: 70ch;
+      margin-bottom: 1.6rem;
+    }
+
+    .grid-2,
+    .grid-3 {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .content-card,
+    .quote-card,
+    .video-card {
+      padding: 1.4rem;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .soft {
+      background: var(--surface-2);
+      border-top: 1px solid rgba(217, 211, 198, 0.65);
+      border-bottom: 1px solid rgba(217, 211, 198, 0.65);
+    }
+
+    .quote-card {
+      background: linear-gradient(180deg, rgba(30,58,74,0.06), rgba(255,255,255,0.92));
+    }
+
+    .disclaimer {
+      border-left: 4px solid var(--teal);
+      padding-left: 1rem;
+      margin-top: 1rem;
+    }
+
+    .state-note {
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-top: 1rem;
+    }
+
+    .video-card {
+      background: linear-gradient(180deg, rgba(125,155,135,0.08), rgba(255,255,255,0.95));
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.48rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(30,58,74,0.08);
+      color: var(--navy);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid rgba(217, 211, 198, 0.85);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.5rem;
+    }
+
+    .small {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .trust-strip,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav ul { gap: 0.8rem 1rem; }
+      .hero { padding-top: 3.4rem; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(calc(100% - 1.2rem), var(--max)); }
+      .site-header .wrap { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+      .button { width: 100%; }
+      .header-row { align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
-  <h1>HealthBuddy AI</h1>
-  <p>Placeholder page.</p>
+  <div class="top-alert" role="note" aria-label="Emergency notice">
+    <div class="wrap">
+      <strong>Education only, not emergency care.</strong>
+      If you think you may be having a medical emergency, call 911 or seek urgent medical help.
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="HealthBuddy AI home">
+        <span class="brand-mark">✚</span>
+        <span>HealthBuddy AI</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#palliative-care">What Palliative Care Is</a></li>
+          <li><a href="#goals-of-care">Goals of Care</a></li>
+          <li><a href="#comfort">Comfort Measures</a></li>
+          <li><a href="#about">About / Transparency</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Plain-language support for hard moments</span>
+          <h1>Serious illness is overwhelming.</h1>
+          <p class="lead">We help you understand what’s happening, what your options are, and what questions to ask — in plain language, with no agenda.</p>
+          <p>HealthBuddy AI is a calm, conservative educational resource for patients, families, and caregivers trying to make sense of serious illness, palliative care, and difficult decisions.</p>
+          <div class="button-row">
+            <a class="button primary" href="#goals-of-care">Start with Goals of Care</a>
+            <a class="button secondary" href="#palliative-care">Learn what palliative care is</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="What this site helps with">
+          <h3>What this site can help with</h3>
+          <ul class="mini-list">
+            <li>Understanding palliative care in plain language</li>
+            <li>Getting oriented to full code, comfort-focused care, and planning conversations</li>
+            <li>Learning common comfort-focused approaches to discuss with your care team</li>
+            <li>Preparing better questions for doctors, nurses, and hospice or palliative teams</li>
+          </ul>
+          <div class="disclaimer">
+            <p><strong>Important:</strong> This information is for general education only. It is not medical advice and does not replace your relationship with your healthcare team.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="wrap trust-strip" aria-label="Trust signals">
+        <div class="trust-card">
+          <strong>Human, not institutional</strong>
+          <span class="small">Built to be useful and honest, not to mimic a hospital or government portal.</span>
+        </div>
+        <div class="trust-card">
+          <strong>Plain-language first</strong>
+          <span class="small">Written for families under stress, not for experts talking to each other.</span>
+        </div>
+        <div class="trust-card">
+          <strong>Conservative framing</strong>
+          <span class="small">No diagnosis, no personalized treatment instructions, no false certainty.</span>
+        </div>
+        <div class="trust-card">
+          <strong>Conversation-focused</strong>
+          <span class="small">Designed to help you ask better questions and understand choices before the next visit.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="palliative-care">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">What Palliative Care Is</span>
+          <h2>Support for serious illness is not the same as giving up.</h2>
+          <p>Palliative care is specialized support for people living with serious illness. It focuses on relief of symptoms, stress, and uncertainty while also helping patients and families understand choices and communicate goals.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="content-card">
+            <h3>What people often get wrong</h3>
+            <p>Many people hear “palliative care” and think it means the very end of life. In reality, palliative care may be helpful much earlier. It may be part of care alongside cancer treatment, heart failure care, lung disease treatment, or other serious illness care.</p>
+            <ul>
+              <li>Palliative care is about support, symptom relief, and communication.</li>
+              <li>It may be offered together with treatments meant to prolong life.</li>
+              <li>Hospice is related, but it is not the same thing.</li>
+            </ul>
+          </article>
+
+          <article class="content-card">
+            <h3>Questions this page should answer</h3>
+            <ul>
+              <li>What does palliative care actually do?</li>
+              <li>How is it different from hospice?</li>
+              <li>Who is it for?</li>
+              <li>When should a family ask about it?</li>
+              <li>How can it help with symptoms, stress, and planning?</li>
+            </ul>
+            <p>Good palliative care does not replace your existing doctors. It helps people understand what matters most and what support is available.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="goals-of-care" class="soft">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">Goals of Care</span>
+          <h2>Understanding options before a crisis can make hard decisions less confusing.</h2>
+          <p>Goals-of-care conversations help patients, families, and clinicians talk honestly about what matters, what treatments may involve, and how care choices line up with a person’s values, condition, and priorities.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="content-card">
+            <h3>What “full code” means</h3>
+            <p>“Full code” usually means the medical team will attempt resuscitation if the heart or breathing stops. That may include CPR, defibrillation, medications, intubation, and intensive care.</p>
+            <p>This is not a judgment about whether someone should or should not choose it. It is a plain-language explanation of what the term usually means in practice.</p>
+          </article>
+
+          <article class="content-card">
+            <h3>What comfort-focused care means</h3>
+            <p>Comfort-focused care centers on relief of suffering, dignity, and quality of life. Depending on the situation, it may place less emphasis on burdensome interventions and more emphasis on symptom relief, peace, and alignment with a person’s wishes.</p>
+            <p>Different people define an acceptable tradeoff differently. That is why conversations matter.</p>
+          </article>
+
+          <article class="quote-card">
+            <h3>Questions to bring to the care team</h3>
+            <ul>
+              <li>What are we hoping this treatment will accomplish?</li>
+              <li>What is most likely to happen next if the illness worsens?</li>
+              <li>What would an emergency treatment attempt actually look like for this patient?</li>
+              <li>What are the likely burdens, limits, or tradeoffs?</li>
+              <li>How can we make sure the plan reflects the patient’s values?</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="grid-2" style="margin-top: 1.25rem;">
+          <article class="content-card">
+            <h3>Planning documents</h3>
+            <p>Common documents people may hear about include:</p>
+            <ul>
+              <li><strong>Advance directive:</strong> a document that may describe preferences and name a decision-maker.</li>
+              <li><strong>Healthcare proxy / surrogate:</strong> the person authorized to speak when the patient cannot.</li>
+              <li><strong>DNR / DNI:</strong> medical orders about resuscitation or intubation in specific settings.</li>
+              <li><strong>POLST:</strong> a medical order set used in some states for seriously ill or medically frail patients.</li>
+            </ul>
+            <div class="state-note">
+              <p><strong>Important state-specific note:</strong> Forms, rules, and names vary by state. Always check with your local healthcare team, hospital, or official state resources before assuming one document applies everywhere.</p>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <h3>Video education can live here</h3>
+            <p>When video modules are ready, this section can hold short, respectful explainers showing what terms like CPR, intubation, and comfort-focused care may look like in plain language.</p>
+            <p>For now, the site structure is built so educational videos can be embedded without needing a separate content system.</p>
+            <div class="pill-row" aria-label="Planned video topics">
+              <span class="pill">Full code</span>
+              <span class="pill">Intubation</span>
+              <span class="pill">Comfort-focused care</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="comfort">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">Comfort Measures</span>
+          <h2>Simple supportive care information, kept general and careful.</h2>
+          <p>This section is meant to help families recognize common comfort-focused themes and prepare questions for their care team. It is not a symptom encyclopedia and it is not individualized treatment advice.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="content-card">
+            <h3>Pain, nausea, and constipation</h3>
+            <p>Some people find it helpful to understand that comfort care often includes attention to pain, nausea, bowel patterns, appetite changes, sleep, and medication side effects. Families may want to ask what supportive options are commonly used, what to watch for, and when symptoms should be reported promptly.</p>
+            <ul>
+              <li>Ask what signs suggest discomfort is increasing.</li>
+              <li>Ask how to track symptoms clearly for the care team.</li>
+              <li>Ask which supportive steps are reasonable at home and which need medical guidance.</li>
+            </ul>
+          </article>
+
+          <article class="content-card">
+            <h3>Breathlessness, skin care, and bedbound care</h3>
+            <p>Breathlessness, skin problems, pressure-related discomfort, and weakness can be frightening. Families may find it helpful to ask about positioning, skin protection, mobility limits, warning signs, and who to call when symptoms change.</p>
+            <ul>
+              <li>Some people find small practical changes can improve comfort.</li>
+              <li>Supportive approaches should be discussed with the care team in context.</li>
+              <li>Caregiver support matters too, especially when care is happening at home.</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="quote-card" style="margin-top: 1.25rem;">
+          <h3>How this section is framed</h3>
+          <p>This site avoids telling people what they should do medically. Instead, it tries to make common comfort topics easier to understand so families can have more useful conversations with clinicians, hospice teams, and palliative care teams.</p>
+          <div class="disclaimer">
+            <p><strong>Educational boundary:</strong> Some people find supportive approaches such as hydration guidance, positioning, skin protection, or simple nausea-relief strategies helpful — but what is appropriate depends on the patient, the illness, and the setting. Ask your care team what fits the situation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="soft">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">About / Transparency</span>
+          <h2>A trust-first public resource, not a replacement for care.</h2>
+          <p>HealthBuddy AI is intended to become a respectful public education destination for serious illness, palliative care, and difficult care decisions. It is designed to help people feel less blindsided and more prepared for real conversations with their healthcare teams.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="content-card">
+            <h3>What this site is</h3>
+            <ul>
+              <li>A plain-language educational resource</li>
+              <li>A starting point for questions and orientation</li>
+              <li>A place for future short-form educational video modules</li>
+              <li>A calm, bounded support layer for patients and families under stress</li>
+            </ul>
+            <h3 style="margin-top: 1.3rem;">What this site is not</h3>
+            <ul>
+              <li>Not emergency care</li>
+              <li>Not a diagnosis service</li>
+              <li>Not individualized medical advice</li>
+              <li>Not a hospital, insurer, or government agency</li>
+            </ul>
+          </article>
+
+          <article class="content-card">
+            <h3>Transparency commitments</h3>
+            <ul>
+              <li>No false claims of official institutional status</li>
+              <li>No attempt to replace the patient’s clinicians</li>
+              <li>No exaggerated certainty or sensational framing</li>
+              <li>Sources and review practices should be visible as the site matures</li>
+              <li>If AI-generated educational visuals or videos are used, they should be disclosed clearly</li>
+            </ul>
+            <p class="small"><strong>Authorship note:</strong> Replace this placeholder with the final public-facing authorship line, credential display, and review/update statement before launch.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>HealthBuddy AI</h3>
+        <p class="small">Plain-language education for serious illness, palliative care, and difficult care decisions.</p>
+        <p class="small">This information is for general education only. It is not medical advice and does not replace your relationship with your healthcare team.</p>
+      </div>
+      <div>
+        <p class="small"><strong>Before launch:</strong> add final authorship/credential line, source references, and any approved contact details.</p>
+        <p class="small">© HealthBuddy AI</p>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
