@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Short educational videos about CPR, intubation, and comfort-focused care — created by HealthBuddy AI to help patients and families understand common serious illness scenarios." />
+  <title>Videos — HealthBuddy AI</title>
+  <style>
+    :root {
+      --bg: #f7f5f1;
+      --surface: #fffdf9;
+      --surface-2: #f1eee7;
+      --ink: #1f2933;
+      --muted: #5c6b73;
+      --line: #d9d3c6;
+      --navy: #1e3a4a;
+      --teal: #2f6f6d;
+      --sage: #7d9b87;
+      --sand: #e9e1d2;
+      --accent: #b86a4b;
+      --shadow: 0 10px 30px rgba(31, 41, 51, 0.08);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    a { color: var(--navy); }
+    a:hover { color: var(--teal); }
+
+    .top-alert {
+      background: #fbf0df;
+      color: #704b2d;
+      border-bottom: 1px solid #e8d2b3;
+      font-size: 0.95rem;
+    }
+
+    .wrap {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .top-alert .wrap,
+    .site-header .wrap,
+    section .wrap,
+    footer .wrap {
+      padding-top: 0.9rem;
+      padding-bottom: 0.9rem;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 245, 241, 0.88);
+      border-bottom: 1px solid rgba(217, 211, 198, 0.9);
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-mark {
+      width: 2.4rem;
+      height: 2.4rem;
+      border-radius: 0.9rem;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--navy), var(--teal));
+      color: white;
+      box-shadow: var(--shadow);
+      font-size: 1.15rem;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      padding: 0;
+      margin: 0;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover,
+    nav a:focus-visible { color: var(--navy); }
+    nav a[aria-current="page"] { color: var(--navy); border-bottom: 2px solid var(--teal); padding-bottom: 1px; }
+
+    section {
+      padding: 2.5rem 0;
+    }
+
+    .page-hero {
+      padding: 3.5rem 0 2rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      padding: 0.38rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(47, 111, 109, 0.1);
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin: 0 0 1rem;
+      color: #15232c;
+    }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.4rem); }
+    h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+    h3 { font-size: 1.25rem; }
+
+    p {
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 1.04rem;
+    }
+
+    .lead {
+      font-size: 1.18rem;
+      max-width: 62ch;
+      color: #31414a;
+    }
+
+    .section-head {
+      max-width: 70ch;
+      margin-bottom: 1.6rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .content-card,
+    .video-card,
+    .methodology-card {
+      background: var(--surface);
+      border: 1px solid rgba(217, 211, 198, 0.85);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.4rem;
+    }
+
+    .video-card {
+      background: linear-gradient(180deg, rgba(125,155,135,0.08), rgba(255,255,255,0.95));
+    }
+
+    .methodology-card {
+      background: linear-gradient(180deg, rgba(30,58,74,0.06), rgba(255,255,255,0.92));
+      margin-bottom: 2rem;
+    }
+
+    .label {
+      display: inline-block;
+      margin-bottom: 0.7rem;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .soft {
+      background: var(--surface-2);
+      border-top: 1px solid rgba(217, 211, 198, 0.65);
+      border-bottom: 1px solid rgba(217, 211, 198, 0.65);
+    }
+
+    .disclaimer {
+      border-left: 4px solid var(--teal);
+      padding-left: 1rem;
+      margin-top: 1rem;
+    }
+
+    .warning-note {
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      margin-top: 1rem;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .video-meta {
+      margin-top: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .video-meta p {
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .video-status {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+
+    .status-review {
+      background: rgba(184, 106, 75, 0.12);
+      color: var(--accent);
+    }
+
+    footer {
+      padding: 2.5rem 0 3rem;
+      border-top: 1px solid rgba(217, 211, 198, 0.85);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.5rem;
+    }
+
+    .small {
+      font-size: 0.94rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 920px) {
+      .grid-2,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      nav ul { gap: 0.8rem 1rem; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(calc(100% - 1.2rem), var(--max)); }
+      .site-header .wrap { padding-top: 0.8rem; padding-bottom: 0.8rem; }
+      .header-row { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-alert" role="note" aria-label="Emergency notice">
+    <div class="wrap">
+      <strong>Education only, not emergency care.</strong>
+      If you think you may be having a medical emergency, call 911 or seek urgent medical help.
+    </div>
+  </div>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="HealthBuddy AI home">
+        <span class="brand-mark">✚</span>
+        <span>HealthBuddy AI</span>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html#palliative-care">What Palliative Care Is</a></li>
+          <li><a href="index.html#goals-of-care">Goals of Care</a></li>
+          <li><a href="index.html#comfort">Comfort Measures</a></li>
+          <li><a href="videos.html" aria-current="page">Videos</a></li>
+          <li><a href="index.html#about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <span class="eyebrow">Educational Videos</span>
+        <h1>Short videos to help you understand what procedures actually look like.</h1>
+        <p class="lead">When a family is facing difficult decisions about CPR, intubation, or comfort-focused care, it can help to have a visual sense of what those things actually involve. These videos are made to support education and informed conversation — not to replace clinical guidance.</p>
+        <div class="disclaimer">
+          <p><strong>Important:</strong> This information is for general education only. It is not medical advice and does not replace your relationship with your healthcare team. These videos are not a substitute for a conversation with the clinicians managing a patient's care.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft">
+      <div class="wrap">
+        <div class="methodology-card">
+          <span class="label">How These Videos Were Made</span>
+          <h2>Video methodology and disclosure</h2>
+          <p>Transparency about how educational content is created is important. These videos were generated using AI video tools and developed by the HealthBuddy AI team under the clinical direction of <strong>Travis Boyer, NP, ACHPN</strong>.</p>
+          <p>These are <strong>pilot and test renders</strong>. They were created to explore whether AI-generated short-form video can accurately and helpfully depict clinical scenarios that families often struggle to understand — things like what CPR actually looks like, what happens during intubation, and what a comfort-focused care setting may look like.</p>
+          <h3>What that means for the viewer</h3>
+          <ul>
+            <li>These videos are <strong>AI-generated</strong>. They are not filmed in a hospital or clinical setting.</li>
+            <li>They are intended for <strong>general educational orientation</strong> only — not as technical medical training.</li>
+            <li>Some renders may have visual limitations or anatomical imprecisions. Content is reviewed against clinical accuracy standards before publication, but no AI-generated video is a perfect depiction.</li>
+            <li>These videos have been reviewed for general accuracy and appropriate framing by a clinician with hospice and palliative care experience.</li>
+            <li>As the library grows, each video will carry a review note with reviewer name, credential, and date.</li>
+          </ul>
+          <h3>Why this approach</h3>
+          <p>Most families have never seen CPR performed in real life. When they are asked to make decisions about resuscitation, they may be imagining something they have only seen in television dramas — which tend to depict outcomes that differ substantially from what happens in clinical settings, particularly for frail or seriously ill patients. These videos attempt to give a more honest, calm, and informative picture.</p>
+          <p>The goal is not to steer any particular decision. It is to give families access to a more grounded visual understanding before a crisis conversation, so that their choices can be more genuinely informed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos-cpr">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">CPR</span>
+          <h2>What resuscitation may look like</h2>
+          <p>These videos were created to give a clearer picture of what CPR involves in practice — including the physical intensity, the clinical team environment, and what it looks like for a frail patient. Different renders explore different aspects of the scenario.</p>
+        </div>
+
+        <div class="grid-2">
+          <article class="video-card">
+            <h3>CPR — Test v1</h3>
+            <video controls preload="metadata">
+              <source src="healthbuddy-video-cpr-test.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <div class="video-meta">
+              <p>Initial baseline render establishing tone and feasibility for CPR education.</p>
+              <span class="video-status status-review">Internal review — not final</span>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <h3>CPR — Test B (Team environment)</h3>
+            <video controls preload="metadata">
+              <source src="healthbuddy-video-cpr-test-B.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <div class="video-meta">
+              <p>Focuses on the code-room environment — the team, the pace, the sensory intensity of a resuscitation.</p>
+              <span class="video-status status-review">Internal review — not final</span>
+            </div>
+          </article>
+
+          <article class="video-card">
+            <h3>CPR — Test C (Frail patient, close-up)</h3>
+            <video controls preload="metadata">
+              <source src="healthbuddy-video-cpr-test-C.mp4" type="video/mp4" />
+              Your browser does not support video playback.
+            </video>
+            <div class="video-meta">
+              <p>Close-up chest compression motion for a frail patient — intended to show the physical reality of resuscitation for seriously ill individuals.</p>
+              <span class="video-status status-review">Internal review — not final</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos-intubation" class="soft">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">Intubation</span>
+          <h2>What intubation involves</h2>
+          <p>Intubation means placing a breathing tube through the throat and into the airway to support or control a patient's breathing. It is often discussed in goals-of-care conversations. This video is intended to give a general sense of what the procedure involves.</p>
+        </div>
+
+        <article class="video-card">
+          <h3>Intubation — Test v1</h3>
+          <video controls preload="metadata" style="max-width: 640px;">
+            <source src="healthbuddy-video-intubation-test.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <div class="video-meta">
+            <p>Initial test render for intubation education. Covers the general procedure and clinical context.</p>
+            <span class="video-status status-review">Internal review — not final</span>
+          </div>
+          <div class="warning-note">
+            <p><strong>Context note:</strong> Intubation and mechanical ventilation are significant interventions. Whether they are appropriate depends entirely on the patient's condition, goals, and the clinical situation. If you are trying to understand this in the context of a specific patient, please talk with the care team.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="videos-comfort">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="label">Comfort-Focused Care</span>
+          <h2>What comfort-focused care may look like</h2>
+          <p>Comfort-focused care emphasizes relief of suffering, dignity, and peace. It may look very different from the intensive interventions shown in other videos. This video is intended to give a sense of that difference.</p>
+        </div>
+
+        <article class="video-card">
+          <h3>Comfort Care — Test v1</h3>
+          <video controls preload="metadata" style="max-width: 640px;">
+            <source src="healthbuddy-video-comfort-care-test.mp4" type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+          <div class="video-meta">
+            <p>Initial test render for comfort care education. Depicts the setting and tone of comfort-focused care.</p>
+            <span class="video-status status-review">Internal review — not final</span>
+          </div>
+        </article>
+
+        <div class="disclaimer" style="margin-top: 1.5rem;">
+          <p><strong>Educational boundary:</strong> These videos are general orientation tools. What comfort care looks like in practice varies by setting, illness, and patient goals. Hospice and palliative care teams can explain what comfort-focused care would mean for a specific patient in a specific situation.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <h3>HealthBuddy AI</h3>
+        <p class="small">Plain-language education for serious illness, palliative care, and difficult care decisions.</p>
+        <p class="small">This information is for general education only. It is not medical advice and does not replace your relationship with your healthcare team.</p>
+      </div>
+      <div>
+        <p class="small"><strong>Created by Travis Boyer, NP, ACHPN</strong><br>Nurse Practitioner · Hospice and Palliative Nursing (ACHPN Certified)</p>
+        <p class="small">© HealthBuddy AI</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
